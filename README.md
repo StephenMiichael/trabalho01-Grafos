@@ -11,6 +11,9 @@ O programa deve permitir:
 
 * Atenção ao prazo para publicação da solução.
 
+## Como rodar?
+Basta rodar py Trabalho01.py através do terminal, dentro do diretório do script.
+
 ## Dependência Necessárias
 * keyboard -> Para escutar a tecla pressionada pelo usuário
     - py -m pip install keyboard
