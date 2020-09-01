@@ -37,25 +37,31 @@ def creditos():
     main()
 
 def main():
-    print('Bem vindo ao trabalho 01\n');
-    opcao = int(input("""Selecione uma opção: 
-            1 - Entrar no programa
-            2 - Créditos
-            3 - Sair
-        
-  Escolha:  """))
-    if opcao == 1:
-        criacaoGrafo()
-    elif opcao == 2:
+    print('Bem vindo ao trabalho 01\n')
+    try:
+        opcao = int(input("""Selecione uma opção: 
+                1 - Entrar no programa
+                2 - Créditos
+                3 - Sair
+            
+    Escolha:  """))
+        if opcao == 1:
+            criacaoGrafo()
+        elif opcao == 2:
+            os.system('cls')
+            print('###CRÉDITOS###')
+            creditos()
+        elif opcao == 3:
+            sair()
+        else:
+            os.system('cls')
+            print("Este número não está nas alternativas, tente novamente :D.\n")
+            main()
+    except ValueError:
         os.system('cls')
-        print('###CRÉDITOS###')
-        creditos()
-    elif opcao == 3:
-        sair()
-    else:
-        os.system('cls')
-        print("Este número não está nas alternativas, tente novamente :D.\n")
+        print("Isso não é um número, tente novamente :D.\n")
         main()
 
 if __name__== "__main__" :
+    os.system('cls')
     main()
