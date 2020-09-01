@@ -53,6 +53,7 @@ def main():
     elif opcao == 3:
         sair()
     else:
+        os.system('cls')
         print("Este número não está nas alternativas, tente novamente :D.\n")
         main()
 
