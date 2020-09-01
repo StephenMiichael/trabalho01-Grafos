@@ -19,7 +19,7 @@ Para voltar ao menu, tecle esc!
           """)
     keyboard.wait('esc')
     os.system('cls')
-    menu()
+    main()
 
 def sair():
     exit()
@@ -34,9 +34,9 @@ def creditos():
          """)
     keyboard.wait('esc')
     os.system('cls')
-    menu()
+    main()
 
-def menu():
+def main():
     print('Bem vindo ao trabalho 01\n');
     opcao = int(input("""Selecione uma opção: 
             1 - Entrar no programa
@@ -54,11 +54,7 @@ def menu():
         sair()
     else:
         print("Este número não está nas alternativas, tente novamente :D.\n")
-        menu()
-
-def main():
-    os.system('cls')
-    menu()
+        main()
 
 if __name__== "__main__" :
     main()
