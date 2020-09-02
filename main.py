@@ -13,36 +13,62 @@ import keyboard  # Para escutar as teclas pressionadas
 import numpy as np
 import funcoes
 
-def criacaoGrafo():
-    os.system('cls')
-    vertices = int(input('Informe a quantidade de vertices do grafo: '))
-    matriz = np.zeros((vertices, vertices), dtype=np.float64)
-
-    while True:
-        os.system('cls')
-        escolha = int(input("""Grafo Criado 
-              1 - Incluir ou Excluir arestas/arcos
-              2 - Incluir ou Excluir vertices 
-              3 - Imprimir matriz de adjacencias
-              4 - Sair 
-              
-              Escolha: """))
+def opcoesGrafo(matriz):
+    try:
+        escolha = int(input("""Opções de grafo:
+            1 - Incluir ou Excluir arestas/arcos
+            2 - Incluir ou Excluir vertices 
+            3 - Imprimir matriz de adjacencias
+            4 - Voltar ao menu principal (⚠️ ⚠️  IRÁ EXCLUIR SEU GRAFO ⚠️ ⚠️ )
+   Escolha: """))
 
         if escolha == 1:
             matriz = funcoes.arestas(matriz)
         elif escolha == 2:
             matriz = funcoes.vertices(matriz)
         elif escolha == 3:
-            print(matriz)
+            os.system('cls')
+            print(f'{matriz}\n')
+            print('Para voltar as opções, pressione ESC')
             keyboard.wait('esc')
         elif escolha == 4:
-            break
+            os.system('cls')
+            main()
         else:
             os.system('cls')
             print("Este número não está nas alternativas, tente novamente :D.\n")
+            os.system('pause')
+            os.system('cls')
+            opcoesGrafo(matriz)
+    except ValueError:
+        os.system('cls')
+        print("Isso não é um número, tente novamente :D.\n")
+        os.system('pause')
+        os.system('cls')
+        opcoesGrafo(matriz)
 
-    print('Voltando para o menu inicial !!')
-    keyboard.wait('esc')
+def criacaoGrafo():
+    try:
+        vertices = int(input('Informe a quantidade de vertices do grafo: '))
+        if(vertices <= 0):
+            os.system('cls')
+            print("Você digitou um menor ou igual a 0! Por favor, escolha um número positivo.\n")
+            os.system('pause')
+            os.system('cls')
+            criacaoGrafo()
+    except ValueError:
+        os.system('cls')
+        print("Isso não é um número, tente novamente :D.\n")
+        os.system('pause')
+        os.system('cls')
+        criacaoGrafo()
+    matriz = np.zeros((vertices, vertices), dtype=np.float64)
+
+    while True:
+        os.system('cls')
+        print('Grafo Criado com sucesso\n')
+        opcoesGrafo(matriz)
+
     os.system('cls')
     main()
 
@@ -55,7 +81,7 @@ def creditos():
         2 - Wesley Grignani
         3 - Lucas Stofella
 
-    Para voltar ao menu, tecle esc!
+    Para voltar ao menu, pressione ESC!
          """)
     keyboard.wait('esc')
     os.system('cls')
@@ -65,12 +91,12 @@ def main():
     print('Bem vindo ao trabalho 01\n')
     try:
         opcao = int(input("""Selecione uma opção: 
-                1 - Entrar no programa
+                1 - Criar grafo
                 2 - Créditos
                 3 - Sair
-
-    Escolha:  """))
+       Escolha: """))
         if opcao == 1:
+            os.system('cls')
             criacaoGrafo()
         elif opcao == 2:
             os.system('cls')
@@ -81,10 +107,14 @@ def main():
         else:
             os.system('cls')
             print("Este número não está nas alternativas, tente novamente :D.\n")
+            os.system('pause')
+            os.system('cls')
             main()
     except ValueError:
         os.system('cls')
         print("Isso não é um número, tente novamente :D.\n")
+        os.system('pause')
+        os.system('cls')
         main()
 
 if __name__ == "__main__":
