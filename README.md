@@ -16,6 +16,7 @@ Basta rodar py Trabalho01.py através do terminal, dentro do diretório do scrip
 
 ## Dependência Necessárias
 * keyboard -> Para escutar a tecla pressionada pelo usuário
-    - pip install keyboard
 * numpy -> Para trabalharmos com matrizes
-    - pip install numpy
+
+## Instalação
+pip install -r .\requirements.txt
