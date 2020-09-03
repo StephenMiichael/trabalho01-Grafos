@@ -5,13 +5,13 @@
 # - Fazer busca em Largura e Profundidade. Com opção de buscar algum elemento do grafo ou mostrar todos os vértices do grafo na ordem de visitação.
 # - O ponto de inicio da busca deve ser informado pelo usuário.
 
-# --> Trabalho pode ser feito em duplas.
+# --> Trabalho pode ser feito em duplas/trios.
 
 # --> Atenção ao prazo para publicação da solução.
 import os  # Para limpar o terminal.
 import keyboard  # Para escutar as teclas pressionadas
-import numpy as np
-import funcoes
+import numpy as np # Para manipulação de matrizes
+import funcoes # Arquivo de funcoes
 
 def opcoesGrafo(matriz):
     try:
