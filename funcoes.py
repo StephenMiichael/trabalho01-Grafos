@@ -19,7 +19,19 @@ def arestas(matriz):
                     try:
                         os.system('cls')
                         v1 = int(input('Origem: '))
+                        if(v1 > (matriz.size/5) or v1 <= 0):
+                            os.system('cls')
+                            print(f'Desculpe... mas você inseriu uma origem inválida {v1}.\n')
+                            os.system('pause')
+                            os.system('cls')
+                            break
                         v2 = int(input('Destino: '))
+                        if(v2 > (matriz.size/5) or v1 <= 0):
+                            os.system('cls')
+                            print(f'Desculpe... mas você inseriu um destino inválido {v2}.\n')
+                            os.system('pause')
+                            os.system('cls')
+                            break
                         matriz[v1-1][v2-1] = 1
                         n = int(input('Continuar ? [1]Sim [0]Nao '))
                         if n == 0:
@@ -45,7 +57,19 @@ def arestas(matriz):
                     try:
                         os.system('cls')
                         v1 = int(input('Origem: '))
+                        if(v1 > (matriz.size/5) or v1 <= 0):
+                            os.system('cls')
+                            print(f'Desculpe... mas você inseriu um destino inválido {v1}.\n')
+                            os.system('pause')
+                            os.system('cls')
+                            break
                         v2 = int(input('Destino: '))
+                        if(v2 > (matriz.size/5) or v1 <= 0):
+                            os.system('cls')
+                            print(f'Desculpe... mas você inseriu um destino inválido {v2}.\n')
+                            os.system('pause')
+                            os.system('cls')
+                            break
                         matriz[v1-1][v2-1] = 0
                         n = int(input('Continuar ? [1]Sim [0]Nao '))
                         if n == 0:
@@ -101,7 +125,6 @@ def vertices(matriz):
                     try:
                         os.system('cls')
                         v1 = int(input('Incluir vertice: '))
-                        #matriz[v1 - 1][v2 - 1] = 1
                         n = int(input('Continuar ? [1]Sim [0]Nao '))
                         if n == 0:
                             os.system('cls')
@@ -126,6 +149,12 @@ def vertices(matriz):
                     while True:
                         os.system('cls')
                         v1 = int(input('Excluir vertice: '))
+                        if(v1 > (matriz.size/5) or v1 <= 0):
+                            os.system('cls')
+                            print(f'Desculpe... mas você inseriu um vertice inválido {v1}.')
+                            os.system('pause')
+                            os.system('cls')
+                            break
                         matriz = np.delete(matriz, (v1 - 1), axis=0)
                         matriz = np.delete(matriz, (v1 - 1), axis=1)
                         n = int(input('Continuar ? [1]Sim [0]Nao '))
