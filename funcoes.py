@@ -151,7 +151,7 @@ def vertices(matriz):
                         v1 = int(input('Excluir vertice: '))
                         if(v1 > (matriz.size/5) or v1 <= 0):
                             os.system('cls')
-                            print(f'Desculpe... mas você inseriu um vertice inválido {v1}.')
+                            print(f'Desculpe... mas você inseriu um vertice inválido {v1}.\n')
                             os.system('pause')
                             os.system('cls')
                             break
