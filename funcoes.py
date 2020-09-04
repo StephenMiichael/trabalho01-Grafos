@@ -1,7 +1,7 @@
 import os  # Para limpar o terminal.
 import keyboard  # Para escutar as teclas pressionadas
-import numpy as np
-import main
+import numpy as np # Para manipulação de matrizes
+import main # Para chamar a função main
 
 def novaMatriz(matriz, incremento):
     matrizAntiga = matriz
