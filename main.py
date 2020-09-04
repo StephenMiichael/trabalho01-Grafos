@@ -31,6 +31,7 @@ def opcoesGrafo(matriz):
             print(f'{matriz}\n')
             print('Para voltar as opções, pressione ESC')
             keyboard.wait('esc')
+            os.system('cls')
         elif escolha == 4:
             os.system('cls')
             main()

@@ -3,15 +3,28 @@ import keyboard  # Para escutar as teclas pressionadas
 import numpy as np
 import main
 
+def novaMatriz(matriz, incremento):
+    matrizAntiga = matriz
+    tamanhoMatrizAntiga = len(matriz)
+    tamanhoMatrizNova = tamanhoMatrizAntiga + incremento
+
+    matrizNova = np.zeros((tamanhoMatrizNova, tamanhoMatrizNova), dtype=np.float64)
+
+    for i in range(tamanhoMatrizAntiga):
+        for j in range(tamanhoMatrizAntiga):
+            matrizNova[i][j] = matrizAntiga[i][j]
+
+    return matrizNova
+
 def arestas(matriz):
-    os.system('cls')
 
     while True:
+        os.system('cls')
         try:
             escolha = int(input("""Opções de arestas:
                 1 - Incluir arestas/arcos
                 2 - Excluir arestas/arcos
-                3 - Voltas às opções do grafo 
+                3 - Voltar às opções do grafo 
        Escolha: """))
 
             if escolha == 1:
@@ -19,16 +32,16 @@ def arestas(matriz):
                     try:
                         os.system('cls')
                         v1 = int(input('Origem: '))
-                        if(v1 > (matriz.size/5) or v1 <= 0):
+                        if(v1 > len(matriz) or v1 <= 0):
                             os.system('cls')
-                            print(f'Desculpe... mas você inseriu uma origem inválida {v1}.\n')
+                            print(f'Desculpe... mas você inseriu uma origem inválida ({v1}).\n')
                             os.system('pause')
                             os.system('cls')
                             break
                         v2 = int(input('Destino: '))
-                        if(v2 > (matriz.size/5) or v1 <= 0):
+                        if(v2 > len(matriz) or v1 <= 0):
                             os.system('cls')
-                            print(f'Desculpe... mas você inseriu um destino inválido {v2}.\n')
+                            print(f'Desculpe... mas você inseriu um destino inválido ({v2}).\n')
                             os.system('pause')
                             os.system('cls')
                             break
@@ -57,16 +70,16 @@ def arestas(matriz):
                     try:
                         os.system('cls')
                         v1 = int(input('Origem: '))
-                        if(v1 > (matriz.size/5) or v1 <= 0):
+                        if(v1 > len(matriz) or v1 <= 0):
                             os.system('cls')
-                            print(f'Desculpe... mas você inseriu um destino inválido {v1}.\n')
+                            print(f'Desculpe... mas você inseriu um destino inválido ({v1}).\n')
                             os.system('pause')
                             os.system('cls')
                             break
                         v2 = int(input('Destino: '))
-                        if(v2 > (matriz.size/5) or v1 <= 0):
+                        if(v2 > len(matriz) or v1 <= 0):
                             os.system('cls')
-                            print(f'Desculpe... mas você inseriu um destino inválido {v2}.\n')
+                            print(f'Desculpe... mas você inseriu um destino inválido ({v2}).\n')
                             os.system('pause')
                             os.system('cls')
                             break
@@ -106,9 +119,6 @@ def arestas(matriz):
             os.system('cls')
             arestas(matriz)
 
-    return matriz
-
-
 def vertices(matriz):
 
     while True:
@@ -117,14 +127,15 @@ def vertices(matriz):
             escolha = int(input("""Opções de vértices:
                 1 - Incluir vertices
                 2 - Excluir vertices
-                3 - Sair 
-        Escolha: """))
+                3 - Voltar as opções do grafo
+       Escolha: """))
 
             if escolha == 1:
                 while True:
                     try:
                         os.system('cls')
                         v1 = int(input('Incluir vertice: '))
+                        matriz = novaMatriz(matriz, v1)
                         n = int(input('Continuar ? [1]Sim [0]Nao '))
                         if n == 0:
                             os.system('cls')
@@ -149,9 +160,9 @@ def vertices(matriz):
                     while True:
                         os.system('cls')
                         v1 = int(input('Excluir vertice: '))
-                        if(v1 > (matriz.size/5) or v1 <= 0):
+                        if(v1 > len(matriz) or v1 <= 0):
                             os.system('cls')
-                            print(f'Desculpe... mas você inseriu um vertice inválido {v1}.\n')
+                            print(f'Desculpe... mas você inseriu um vertice inválido ({v1}).\n')
                             os.system('pause')
                             os.system('cls')
                             break
@@ -178,7 +189,7 @@ def vertices(matriz):
 
             elif escolha == 3:
                 os.system('cls')
-                break
+                main.opcoesGrafo(matriz)
             else:
                 os.system('cls')
                 print("Opção inválida. Tente novamente.\n")
@@ -190,5 +201,3 @@ def vertices(matriz):
             os.system('pause')
             os.system('cls')
             vertices(matriz)
-
-    return matriz
