@@ -134,7 +134,7 @@ def vertices(matriz):
                 while True:
                     try:
                         os.system('cls')
-                        v1 = int(input('Incluir vertice: '))
+                        v1 = int(input('Vértices a serem incluídos: '))
                         matriz = novaMatriz(matriz, v1)
                         n = int(input('Continuar ? [1]Sim [0]Nao '))
                         if n == 0:
