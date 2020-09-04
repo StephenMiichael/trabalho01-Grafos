@@ -1,7 +1,6 @@
 import os  # Para limpar o terminal.
 import keyboard  # Para escutar as teclas pressionadas
 import numpy as np # Para manipulação de matrizes
-import main # Para chamar a função main
 
 def novaMatriz(matriz, incremento):
     matrizAntiga = matriz
@@ -105,7 +104,7 @@ def arestas(matriz):
 
             elif escolha == 3:
                 os.system('cls')
-                main.opcoesGrafo(matriz)
+                return matriz
 
             else:
                 os.system('cls')
@@ -189,7 +188,7 @@ def vertices(matriz):
 
             elif escolha == 3:
                 os.system('cls')
-                main.opcoesGrafo(matriz)
+                return matriz
             else:
                 os.system('cls')
                 print("Opção inválida. Tente novamente.\n")

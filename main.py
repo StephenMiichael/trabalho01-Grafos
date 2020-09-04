@@ -47,6 +47,7 @@ def opcoesGrafo(matriz):
         os.system('pause')
         os.system('cls')
         opcoesGrafo(matriz)
+    
 
 def criacaoGrafo():
     try:
