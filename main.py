@@ -16,11 +16,13 @@ import funcoes # Arquivo de funcoes
 def opcoesGrafo(matriz):
     try:
         escolha = int(input("""Opções de grafo:
-            1 - Incluir ou Excluir arestas/arcos
-            2 - Incluir ou Excluir vertices 
-            3 - Imprimir matriz de adjacencias
-            4 - Voltar ao menu principal (⚠️ ⚠️  IRÁ EXCLUIR SEU GRAFO ⚠️ ⚠️ )
-   Escolha: """))
+         1 - Incluir ou Excluir arestas/arcos
+         2 - Incluir ou Excluir vertices 
+         3 - Imprimir matriz de adjacencias
+         4 - Busca em largura
+         5 - Busca em profundidade
+         6 - Voltar ao menu principal ( ⚠️ ⚠️  IRÁ EXCLUIR SEU GRAFO ⚠️ ⚠️  )
+Escolha: """))
 
         if escolha == 1:
             matriz = funcoes.arestas(matriz)
@@ -34,18 +36,18 @@ def opcoesGrafo(matriz):
             os.system('cls')
         elif escolha == 4:
             os.system('cls')
+            funcoes.buscaLargura(matriz)
+        elif escolha == 5:
+            os.system('cls')
+            funcoes.buscaProfundidade(matriz)
+        elif escolha == 6:
+            os.system('cls')
             main()
         else:
-            os.system('cls')
-            print("Este número não está nas alternativas, tente novamente :D.\n")
-            os.system('pause')
-            os.system('cls')
+            funcoes.erro()
             opcoesGrafo(matriz)
     except ValueError:
-        os.system('cls')
-        print("Isso não é um número, tente novamente :D.\n")
-        os.system('pause')
-        os.system('cls')
+        funcoes.erro()
         opcoesGrafo(matriz)
     
 
@@ -53,16 +55,10 @@ def criacaoGrafo():
     try:
         vertices = int(input('Informe a quantidade de vertices do grafo: '))
         if(vertices <= 0):
-            os.system('cls')
-            print("Você digitou um menor ou igual a 0! Por favor, escolha um número positivo.\n")
-            os.system('pause')
-            os.system('cls')
+            funcoes.erro()
             criacaoGrafo()
     except ValueError:
-        os.system('cls')
-        print("Isso não é um número, tente novamente :D.\n")
-        os.system('pause')
-        os.system('cls')
+        funcoes.erro()
         criacaoGrafo()
     matriz = np.zeros((vertices, vertices), dtype=np.float64)
 
@@ -107,16 +103,10 @@ def main():
         elif opcao == 3:
             sair()
         else:
-            os.system('cls')
-            print("Este número não está nas alternativas, tente novamente :D.\n")
-            os.system('pause')
-            os.system('cls')
+            funcoes.erro()
             main()
     except ValueError:
-        os.system('cls')
-        print("Isso não é um número, tente novamente :D.\n")
-        os.system('pause')
-        os.system('cls')
+        funcoes.erro()
         main()
 
 if __name__ == "__main__":
