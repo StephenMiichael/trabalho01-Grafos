@@ -1,6 +1,12 @@
+### Autores
+# Lucas Stofella da silva
+# Stephen Michael Apolinário
+# Wesley Grignani
+
 import os  # Para limpar o terminal.
 import keyboard  # Para escutar as teclas pressionadas
 import numpy as np # Para manipulação de matrizes
+import main # Para voltar ao script principal
 
 def erro():
     os.system('cls')
@@ -15,6 +21,59 @@ def buscaLarguraElemento(matriz):
     os.system('cls')
     buscaLargura(matriz)
 
+def buscarLinhasEmLargurasVertice(matriz, visited, queue, i):
+    # Vai procurar algum elemento com valor = 1 e que não esteja visitado...
+    # Na linha que foi nos passado.
+    for j in range(len(matriz)):
+        if(matriz[i][j] == 1 and j not in visited):
+            queue.append(j)
+
+    # Se a fila estiver vazia...
+    if(queue == []):
+        for x in range (len(matriz)):
+            if(x not in visited):
+                visited.append(x)
+                buscarLinhasEmLargurasVertice(matriz, visited, queue, x)
+        # Se não encontrou nenhuma linha não visitada, acabou o programa.
+        for index in range(len(visited)): 
+            visited[index] = visited[index] + 1 
+        os.system('cls')
+        print('TERMINOU!\n')
+        print(visited)
+        os.system('pause')
+        os.system('cls')
+        buscaLargura(matriz)
+    
+    # Se ainda não terminou de percorrer em largura, e ainda tenho elementos na fila...
+    elif(queue != []):
+        for element in queue:
+            if(element not in visited):
+                visited.append(element)
+                # tira elemento da fila
+        novoElemento = queue[0]
+        del queue[0]
+        buscarLinhasEmLargurasVertice(matriz, visited, queue, novoElemento)
+
+def buscaLarguraMostraVertices(matriz):
+    os.system('cls')
+
+    visited = []
+    queue = []
+    # Usuário escolhe a linha - 1
+    try:
+        i = int(input("Escolha um vértice para iniciar: ")) - 1
+        if(i > len(matriz) or i < 0):
+            erro()
+            buscaLarguraMostraVertices(matriz)
+
+    except ValueError:
+        erro()
+        buscaLarguraMostraVertices(matriz)
+
+    visited.append(i)
+
+    buscarLinhasEmLargurasVertice(matriz, visited, queue, i)
+
 def buscaProfundidadeElemento(matriz):
     os.system('cls')
     print("Desculpe!! Ainda não implementamos essa funcionalidade!\n")
@@ -23,13 +82,6 @@ def buscaProfundidadeElemento(matriz):
     buscaLargura(matriz)
 
 def buscaProfundidadeMostraVertices(matriz):
-    os.system('cls')
-    print("Desculpe!! Ainda não implementamos essa funcionalidade!\n")
-    os.system('pause')
-    os.system('cls')
-    buscaLargura(matriz)
-
-def buscaLarguraMostraVertices(matriz):
     os.system('cls')
     print("Desculpe!! Ainda não implementamos essa funcionalidade!\n")
     os.system('pause')
@@ -54,15 +106,14 @@ Escolha: """))
 
         elif escolha == 3:
             os.system('cls')
-            return 
-
+            return main.opcoesGrafo(matriz)
         else:
             erro()
+            return main.opcoesGrafo(matriz)
 
     except ValueError:
         erro()
-
-    return matriz    
+        main.opcoesGrafo(matriz)
 
 def buscaProfundidade(matriz):
     print("Bem vindo à busca em profundidade!\n")
@@ -82,15 +133,15 @@ Escolha: """))
 
         elif escolha == 3:
             os.system('cls')
-            return 
+            return main.opcoesGrafo(matriz) 
 
         else:
             erro()
+            return main.opcoesGrafo(matriz) 
 
     except ValueError:
         erro()
-
-    return matriz 
+        return main.opcoesGrafo(matriz) 
 
 def novaMatriz(matriz, incremento):
     matrizAntiga = matriz
