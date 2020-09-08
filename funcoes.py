@@ -83,10 +83,60 @@ def buscaProfundidadeElemento(matriz):
 
 def buscaProfundidadeMostraVertices(matriz):
     os.system('cls')
-    print("Desculpe!! Ainda não implementamos essa funcionalidade!\n")
-    os.system('pause')
-    os.system('cls')
-    buscaLargura(matriz)
+    visitados = np.zeros(len(matriz))  # vetor de elementos visitados
+
+    escolha = int(input("""
+        Informe o vertice de origem: """))
+
+    if escolha <= len(matriz):
+        quant_linhas = len(matriz)  # Conta quantas linhas existem
+        quant_colunas = len(matriz[0])  # Conta quantos elementos têm em uma linha
+        escolha -= 1
+        visitados[escolha] = 1  # Primeiro vertice visitado
+        pilha = []  # Criação da pilha
+
+        pilha.append(escolha)  # primeiro elemento escolhido visitado
+        inicio = escolha  # iniciando pela linha do elemento escolhido da matriz
+        parada = 0  # criterio de parada
+        caminho = []  # vetor reservado para guardar o caminho percorrido
+        caminho.append(escolha+1)  # inicio do caminho
+
+
+        while parada == 0:  # criterio de parada
+            contador = 0
+            for j in range(quant_colunas):  # percorrer a matriz em busca de um elemento nao visitado
+                if matriz[inicio][j] == 1 and visitados[j] == 0:
+                    pilha.append(j)  # adiciona na pilha
+                    visitados[j] = 1  # marca elemento como visitado
+                    inicio = int(j)  # define este elemento como principal
+                    caminho.append(j+1)  # adiciona elemento no vetor de caminhos
+                    break
+                else:
+                    contador += 1  # caso nao encontre um vertice nao visitado
+
+            if visitados.mean() == 1:  # se vetor de visitados estiver cheio codigo termina
+                parada = 1  # altera o criterio de parada
+                print(caminho)  # mostra o caminho feito
+                keyboard.wait('esc')
+
+            elif contador == len(matriz):  # caso tenha percorrido toda linha e nao encontrou vertice nao visitado
+                if len(pilha) == 0:  # se a pilha estiver vazia
+                    for y in range(quant_colunas):  # procura por vertices ainda nao visitados
+                        if visitados[y] == 0:
+                            inicio = int(y)
+                            visitados[y] = 1
+                            caminho.append(y+1)
+                            pilha.append(y)
+                            break
+                else:  # caso a pilha esteja com algum vertice
+                    inicio = pilha.pop()
+
+    else:
+        os.system('cls')
+        print('Valor invalido!!')
+        keyboard.wait('esc')
+        buscaProfundidadeMostraVertices(matriz)
+
 
 def buscaLargura(matriz):
     print("Bem vindo à busca em largura!\n")
