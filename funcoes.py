@@ -22,56 +22,94 @@ def buscaLarguraElemento(matriz):
     buscaLargura(matriz)
 
 def buscarLinhasEmLargurasVertice(matriz, visited, queue, i):
-    # Vai procurar algum elemento com valor = 1 e que não esteja visitado...
-    # Na linha que foi nos passado.
+    # Irá percorer todas as colunas da nossa linha passada pelo usuário.
     for j in range(len(matriz)):
+        # Caso encontre valores = 1, e que estes não estejam nos visitados.
         if(matriz[i][j] == 1 and j not in visited):
+            # Irá adicionar no final da lista de fila, os valores do vértice com ligações.
             queue.append(j)
 
-    # Se a fila estiver vazia...
+    # Se a fila estiver vazia.
     if(queue == []):
+        # Irá procurar um novo vértice (Linha) de nossa matriz.
         for x in range (len(matriz)):
+            # Se a linha não estiver nos visitados.
             if(x not in visited):
+                # Irá adicionar o vértice (Linha) no final dos visitados.
                 visited.append(x)
+                # Irá chamar a função novamente.
                 buscarLinhasEmLargurasVertice(matriz, visited, queue, x)
-        # Se não encontrou nenhuma linha não visitada, acabou o programa.
+        # Se não encontrou nenhuma linha não visitada, acabou a busca.
         for index in range(len(visited)): 
-            visited[index] = visited[index] + 1 
+            # Apenas para melhoria visual aos usuários, será tratado os valores;
+            # Da lista de visitados, para + 1.
+            visited[index] = visited[index] + 1
+        # Limpa a tela
         os.system('cls')
         print('TERMINOU!\n')
+        # Irá printar a nossa lista de visitados em ordem.
         print(visited)
+        # Irá dar um pause no terminal, e depois limpar a tela.
         os.system('pause')
         os.system('cls')
+        # Irá voltar para as opções de busca em largura, passando a matriz.
         buscaLargura(matriz)
     
-    # Se ainda não terminou de percorrer em largura, e ainda tenho elementos na fila...
+    # Se a fila não está vazia.
     elif(queue != []):
+        # Para cada elemento da fila.
         for element in queue:
+            # Se o elemento não estiver nos visitados.
             if(element not in visited):
+                # Irá adiciopnar o elemento da fila no final dos visitados.
                 visited.append(element)
-                # tira elemento da fila
+        # Irá criar uma variável auxiliar para pegar o primeiro valor da fila.
         novoElemento = queue[0]
+        # Irá deletar o primeiro valor da fila.
         del queue[0]
+        # Irá chamar a nossa função novamente, mas agora irá passar o valor do;
+        # Novo elemento.
         buscarLinhasEmLargurasVertice(matriz, visited, queue, novoElemento)
 
+# Função de mostrar todos os vértices de uma matriz em ordem de visitação
+# Através de uma busca em largura
 def buscaLarguraMostraVertices(matriz):
+    # Limpa a tela.
     os.system('cls')
 
+    # Inicia duas lists em branco;
+    # Uma lista será a nossa fila, e outra a de vértices visitados.
     visited = []
     queue = []
-    # Usuário escolhe a linha - 1
     try:
+        # Usuário escolhe a linha - 1
         i = int(input("Escolha um vértice para iniciar: ")) - 1
+
+        # Se o valor que o usuário digitar -1 for maior que a dimensão da matriz;
+        # Ou então se o valor for menor que 0.
         if(i > len(matriz) or i < 0):
+            # Irá mostrar uma mensagem de erro genérico.
             erro()
+            # Irá retornar a nossa função, para limpar a tela e perguntar por; 
+            # Qual vértice começar.
             buscaLarguraMostraVertices(matriz)
 
+    # Se o valor que o usuário digitar não for um inteiro.
     except ValueError:
+        # Irá mostrar uma mensagem de erro genérico.
         erro()
+        # Irá retornar a nossa função, para limpar a tela e perguntar por; 
         buscaLarguraMostraVertices(matriz)
 
+    # Caso passe pelas verificações, irá adicionar no final da lista de visitados;
+    # O valor de entrada pelo usuário.
     visited.append(i)
 
+    # E irá chamar a função que vai mostrar os vértices em ordem de visitação;
+    # Através de uma busca em largura.
+    # A função passa como parametro a própria matriz, a lista de visitados (Que contem;
+    # O valor adicionado pelo usuário), a lista de fila, e o próprio valor inserido
+    # Que será a nossa linha. 
     buscarLinhasEmLargurasVertice(matriz, visited, queue, i)
 
 def buscaProfundidadeElemento(matriz):
