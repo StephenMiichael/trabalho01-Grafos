@@ -7,12 +7,7 @@ import os  # Para limpar o terminal.
 import keyboard  # Para escutar as teclas pressionadas
 import numpy as np # Para manipulação de matrizes
 import main # Para voltar ao script principal
-
-def erro():
-    os.system('cls')
-    print("Opção inválida. Tente novamente.\n")
-    os.system('pause')
-    os.system('cls')
+import erro # Para mostrar mensagens de erro
 
 def buscaLarguraElemento(matriz):
     os.system('cls')
@@ -89,7 +84,7 @@ def buscaLarguraMostraVertices(matriz):
         # Ou então se o valor for menor que 0.
         if(i > len(matriz) or i < 0):
             # Irá mostrar uma mensagem de erro genérico.
-            erro()
+            erro.mensagem()
             # Irá retornar a nossa função, para limpar a tela e perguntar por; 
             # Qual vértice começar.
             buscaLarguraMostraVertices(matriz)
@@ -97,7 +92,7 @@ def buscaLarguraMostraVertices(matriz):
     # Se o valor que o usuário digitar não for um inteiro.
     except ValueError:
         # Irá mostrar uma mensagem de erro genérico.
-        erro()
+        erro.mensagem()
         # Irá retornar a nossa função, para limpar a tela e perguntar por; 
         buscaLarguraMostraVertices(matriz)
 
@@ -175,7 +170,6 @@ def buscaProfundidadeMostraVertices(matriz):
         keyboard.wait('esc')
         buscaProfundidadeMostraVertices(matriz)
 
-
 def buscaLargura(matriz):
     print("Bem vindo à busca em largura!\n")
 
@@ -196,11 +190,11 @@ Escolha: """))
             os.system('cls')
             return main.opcoesGrafo(matriz)
         else:
-            erro()
+            erro.mensagem()
             return main.opcoesGrafo(matriz)
 
     except ValueError:
-        erro()
+        erro.mensagem()
         main.opcoesGrafo(matriz)
 
 def buscaProfundidade(matriz):
@@ -224,11 +218,11 @@ Escolha: """))
             return main.opcoesGrafo(matriz) 
 
         else:
-            erro()
+            erro.mensagem()
             return main.opcoesGrafo(matriz) 
 
     except ValueError:
-        erro()
+        erro.mensagem()
         return main.opcoesGrafo(matriz) 
 
 def novaMatriz(matriz, incremento):
@@ -261,11 +255,11 @@ Escolha: """))
                         os.system('cls')
                         v1 = int(input('Origem: '))
                         if(v1 > len(matriz) or v1 <= 0):
-                            erro()
+                            erro.mensagem()
                             break
                         v2 = int(input('Destino: '))
                         if(v2 > len(matriz) or v1 <= 0):
-                            erro()
+                            erro.mensagem()
                             break
                         matriz[v1-1][v2-1] = 1
                         n = int(input('Continuar ? [1]Sim [0]Nao '))
@@ -275,10 +269,10 @@ Escolha: """))
                         elif n == 1:
                             continue
                         else:
-                            erro()
+                            erro.mensagem()
                             break
                     except ValueError:
-                        erro()
+                        erro.mensagem()
                         arestas(matriz)
 
             elif escolha == 2:
@@ -287,11 +281,11 @@ Escolha: """))
                         os.system('cls')
                         v1 = int(input('Origem: '))
                         if(v1 > len(matriz) or v1 <= 0):
-                            erro()
+                            erro.mensagem()
                             break
                         v2 = int(input('Destino: '))
                         if(v2 > len(matriz) or v1 <= 0):
-                            erro()
+                            erro.mensagem()
                             break
                         matriz[v1-1][v2-1] = 0
                         n = int(input('Continuar ? [1]Sim [0]Nao '))
@@ -301,10 +295,10 @@ Escolha: """))
                         if n == 1:
                             continue
                         else:
-                            erro()
+                            erro.mensagem()
                             break
                     except ValueError:
-                        erro()
+                        erro.mensagem()
                         arestas(matriz)
 
             elif escolha == 3:
@@ -312,9 +306,9 @@ Escolha: """))
                 return matriz
 
             else:
-                erro()
+                erro.mensagem()
         except ValueError:
-            erro()
+            erro.mensagem()
             arestas(matriz)
 
 def vertices(matriz):
@@ -341,10 +335,10 @@ Escolha: """))
                         elif n == 1:
                             continue
                         else:
-                            erro()
+                            erro.mensagem()
                             break
                     except ValueError:
-                        erro()
+                        erro.mensagem()
                         vertices(matriz)
                     
             elif escolha == 2:
@@ -353,7 +347,7 @@ Escolha: """))
                         os.system('cls')
                         v1 = int(input('Excluir vertice: '))
                         if(v1 > len(matriz) or v1 <= 0):
-                            erro()
+                            erro.mensagem()
                             break
                         matriz = np.delete(matriz, (v1 - 1), axis=0)
                         matriz = np.delete(matriz, (v1 - 1), axis=1)
@@ -364,17 +358,17 @@ Escolha: """))
                         elif n == 1:
                             continue
                         else:
-                            erro()
+                            erro.mensagem()
                             break
                 except ValueError:
-                    erro()
+                    erro.mensagem()
                     vertices(matriz) 
 
             elif escolha == 3:
                 os.system('cls')
                 return matriz
             else:
-                erro()
+                erro.mensagem()
         except ValueError:
-            erro()
+            erro.mensagem()
             vertices(matriz)

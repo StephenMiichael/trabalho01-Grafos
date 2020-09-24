@@ -6,6 +6,8 @@ import os  # Para limpar o terminal.
 import keyboard  # Para escutar as teclas pressionadas
 import numpy as np # Para manipulação de matrizes
 import funcoes # Arquivo de funcoes
+import conectividade # Arquivo de funcoes envolvendo conectividade
+import erro # Para mostrar mensagens de erro
 
 def opcoesGrafo(matriz):
     try:
@@ -15,7 +17,8 @@ def opcoesGrafo(matriz):
          3 - Imprimir matriz de adjacencias
          4 - Busca em largura
          5 - Busca em profundidade
-         6 - Voltar ao menu principal ( ⚠️ ⚠️  IRÁ EXCLUIR SEU GRAFO ⚠️ ⚠️  )
+         6 - Verificar grafo conexo
+         7 - Voltar ao menu principal ( ⚠️ ⚠️  IRÁ EXCLUIR SEU GRAFO ⚠️ ⚠️  )
 Escolha: """))
 
         if escolha == 1:
@@ -36,12 +39,15 @@ Escolha: """))
             funcoes.buscaProfundidade(matriz)
         elif escolha == 6:
             os.system('cls')
+            conectividade.verificaGrafoConexo(matriz)
+        elif escolha == 7:
+            os.system('cls')
             main()
         else:
-            funcoes.erro()
+            erro.mensagem()
             opcoesGrafo(matriz)
     except ValueError:
-        funcoes.erro()
+        erro.mensagem()
         opcoesGrafo(matriz)
     
 
@@ -49,10 +55,10 @@ def criacaoGrafo():
     try:
         vertices = int(input('Informe a quantidade de vertices do grafo: '))
         if(vertices <= 0):
-            funcoes.erro()
+            erro.mensagem()
             criacaoGrafo()
     except ValueError:
-        funcoes.erro()
+        erro.mensagem()
         criacaoGrafo()
     matriz = np.zeros((vertices, vertices), dtype=np.float64)
 
@@ -97,10 +103,10 @@ def main():
         elif opcao == 3:
             sair()
         else:
-            funcoes.erro()
+            erro.mensagem()
             main()
     except ValueError:
-        funcoes.erro()
+        erro.mensagem()
         main()
 
 if __name__ == "__main__":
