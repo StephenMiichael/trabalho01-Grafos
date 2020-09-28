@@ -34,34 +34,30 @@ def buscaFechosTransitivos(matriz, verticeIniciador):
     # matriz[4][3] = 1 
 
     # Matriz Exemplo 2
-    matriz[0][1] = 1 
-    matriz[0][3] = 1 
-    matriz[1][2] = 1 
-    matriz[2][6] = 1 
-    matriz[3][4] = 1 
-    matriz[3][5] = 1 
-    matriz[4][0] = 1 
-    matriz[4][1] = 1 
-    matriz[4][2] = 1 
-    matriz[4][6] = 1 
-    matriz[5][2] = 1
-    matriz[6][1] = 1
-    matriz[6][5] = 1
+    # matriz[0][1] = 1 
+    # matriz[0][3] = 1 
+    # matriz[1][2] = 1 
+    # matriz[2][6] = 1 
+    # matriz[3][4] = 1 
+    # matriz[3][5] = 1 
+    # matriz[4][0] = 1 
+    # matriz[4][1] = 1 
+    # matriz[4][2] = 1 
+    # matriz[4][6] = 1 
+    # matriz[5][2] = 1
+    # matriz[6][1] = 1
+    # matriz[6][5] = 1
 
     subgrafos = []
     tamanhoSubgrafos = 0
     conexo = True
 
     while(True):
-        print(f'Vertice Iniciador {verticeIniciador}')
         aux = []
         auxDireto = []
         auxIndireto = []
         direto = fechoTransitivoDireto(matriz, verticeIniciador)
         indireto = fechoTransitivoIndireto(matriz, verticeIniciador)
-
-        print(f'Direto: {direto}')
-        print(f'Indireto: {indireto}')
 
         for pos in range(len(direto)):
             if(direto[pos] != None):
@@ -75,18 +71,12 @@ def buscaFechosTransitivos(matriz, verticeIniciador):
         aux = list(set(auxDireto) & set(auxIndireto))
 
         subgrafos.append(aux)
-        print(f'Auxiliar Direto: {auxDireto}')
-        print(f'Auxiliar Indireto: {auxIndireto}')
-        print(f'Intersecção: {aux}')
-        print(f'Subgrafos: {subgrafos}')
 
         # Verifica quantos vértices possui a soma de subrafos.
         for element in subgrafos:
             for x in element:
                 tamanhoSubgrafos += 1
                 
-        print(f'Tamanho Subgrafo: {tamanhoSubgrafos}')
-        os.system('pause')
         # Se e a quantidade de vértices nos subgrafos for diferente do tamanho
         # da matriz, então ainda teremos que fazer mais transições, e o grafo não 
         # é conexo.
@@ -95,12 +85,13 @@ def buscaFechosTransitivos(matriz, verticeIniciador):
             conexo = False
             verticeIniciador = verificaSubrafos(matriz, subgrafos)
         else:
+            os.system('cls')
             if(conexo == True):
                 print("O seu grafo é conexo!")
                 subgrafos = subgrafos[0]
             else:
                 print("O seu grafo não é conexo!")
-            print(subgrafos)
+            print(f'Ordem de visitação:\n{subgrafos}')
             os.system('pause')
             break
 
