@@ -121,40 +121,48 @@ def fechoTransitivoDireto(matriz, vertice):
     n = 1
     n_aux = 1
 
-    while parada == 0:
+    while parada == 0:  # condição de parada para 
         contador2 = 0
         parada2 = 0
-        for j in range(quant_colunas):
-            if matriz[vertice][j] == 1 and vetor[j] == 0:
-                vetor[j] = n
+        for j in range(quant_colunas):  # laço para percorrer toda a linha da matriz
+            if matriz[vertice][j] == 1 and vetor[j] == 0:  # verifica se o vertice possui alguma ligacao
+                vetor[j] = n  # adiciona o caminho no vetor de visitados e no vetor auxiliar 
+                
+                # o vetor auxiliar é utilizado para posteriormente encontrar quem serao os proximos vertices 
+                # de caminho menor para percorrer
                 vetor_aux[j] = n
             else:
                 contador2 += 1
 
-        if vetor_aux.mean() == -1:
+        if vetor_aux.mean() == -1:  # condição de parada criada para verificar quando o vetor auxiliar estiver cheio 
             parada = 1
-
+        
+        # esta parte do codigo é destinada a percorrer o vetor auxiliar e encontrar sempre o vertice de caminho menor 
+        # para ser utilizado como novo vertice de origem no codigo acima
         parada3 = 0
         while parada2 == 0:
             contador = 0
 
+            # caso o caminho tenha sido incrementado duas vezes e mesmo assim não foi encontrado vertices
             if parada3 == 2:
                 parada = 1
                 break
 
-            for j in range(quant_colunas):
+            for j in range(quant_colunas):  # percorre o vetor auxiliar em busca de vertices de caminho menor
                 if vetor_aux[j] == n_aux:
-                    vertice = int(j)
+                    vertice = int(j)  # define a posicao do novo vertice 
                     vetor_aux[j] = -1
                     n = n_aux + 1
                     parada2 = 1
                     break
                 else:
-                    contador += 1
+                    contador += 1  # caso nao encontre algum vertice com o determinado valor de caminho 
 
+            # esta condicao é verdadeira quando nao existe mais vertices de caminho especifico procurado
+            # e entao o caminho é incrementado 
             if len(matriz) == contador:
                 n_aux += 1
-                parada3 += 1
+                parada3 += 1  # criterio de parada criado para verificar quantas vezes o caminho foi incrementado
 
     direto = [None]*len(matriz)
     for pos in range(len(vetor)):
