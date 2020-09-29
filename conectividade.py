@@ -99,10 +99,11 @@ def buscaFechosTransitivos(matriz, verticeIniciador):
         else:
             if(conexo == True):
                 print("O seu grafo é conexo!")
-                subgrafos = subgrafos[0]
             else:
                 subgrafos = [s for s in subgrafos if len(s) != 1]
                 print("O seu grafo não é conexo!")
+            if(len(subgrafos) == 1):
+                subgrafos = subgrafos[0]
             print(subgrafos)
             os.system('pause')
             break
