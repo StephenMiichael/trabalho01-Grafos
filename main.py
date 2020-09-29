@@ -1,19 +1,20 @@
-### Autores
+# Autores
 # Lucas Stofella da silva
 # Stephen Michael Apolinário
 # Wesley Grignani
 import os  # Para limpar o terminal.
 import keyboard  # Para escutar as teclas pressionadas
-import numpy as np # Para manipulação de matrizes
-import funcoes # Arquivo de funcoes
-import conectividade # Arquivo de funcoes envolvendo conectividade
-import erro # Para mostrar mensagens de erro
+import numpy as np  # Para manipulação de matrizes
+import funcoes  # Arquivo de funcoes
+import conectividade  # Arquivo de funcoes envolvendo conectividade
+import erro  # Para mostrar mensagens de erro
+
 
 def opcoesGrafo(matriz):
     try:
         escolha = int(input("""Opções de grafo:
          1 - Incluir ou Excluir arestas/arcos
-         2 - Incluir ou Excluir vertices 
+         2 - Incluir ou Excluir vertices
          3 - Imprimir matriz de adjacencias
          4 - Busca em largura
          5 - Busca em profundidade
@@ -49,7 +50,7 @@ Escolha: """))
     except ValueError:
         erro.mensagem()
         opcoesGrafo(matriz)
-    
+
 
 def criacaoGrafo():
     try:
@@ -70,8 +71,10 @@ def criacaoGrafo():
     os.system('cls')
     main()
 
+
 def sair():
     exit()
+
 
 def creditos():
     print("""Acadêmicos:
@@ -85,10 +88,11 @@ def creditos():
     os.system('cls')
     main()
 
+
 def main():
     print('Bem vindo ao trabalho 01\n')
     try:
-        opcao = int(input("""Selecione uma opção: 
+        opcao = int(input("""Selecione uma opção:
                 1 - Criar grafo
                 2 - Créditos
                 3 - Sair
@@ -108,6 +112,7 @@ def main():
     except ValueError:
         erro.mensagem()
         main()
+
 
 if __name__ == "__main__":
     os.system('cls')

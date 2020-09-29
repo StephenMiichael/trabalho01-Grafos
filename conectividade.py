@@ -1,52 +1,65 @@
-### Autores
+# Autores
 # Lucas Stofella da silva
 # Stephen Michael Apolinário
 # Wesley Grignani
 
 import os  # Para limpar o terminal.
 import keyboard  # Para escutar as teclas pressionadas
-import main # Para voltar ao script principal
-import funcoes # Para mostrar as mensagens de erro
-import numpy as np # Para manipulação de matrizes
-import erro # Para mostrar mensagens de erro
+import main  # Para voltar ao script principal
+import funcoes  # Para mostrar as mensagens de erro
+import numpy as np  # Para manipulação de matrizes
+import erro  # Para mostrar mensagens de erro
+
 
 def verificaSubrafos(matriz, subgrafos):
     for i in range(len(matriz)):
-        for subs in subgrafos:
-            if(i not in subs):
-                return i
+        if i not in (item for sublist in subgrafos for item in sublist):
+            return i
+
 
 def buscaFechosTransitivos(matriz, verticeIniciador):
     # Matriz Exemplo 1
-    # matriz[0][1] = 1 
-    # matriz[0][4] = 1 
-    # matriz[1][0] = 1 
-    # matriz[1][2] = 1 
-    # matriz[1][4] = 1 
-    # matriz[2][1] = 1 
-    # matriz[2][3] = 1 
-    # matriz[2][4] = 1 
-    # matriz[3][1] = 1 
-    # matriz[3][2] = 1 
+    # matriz[0][1] = 1
+    # matriz[0][4] = 1
+    # matriz[1][0] = 1
+    # matriz[1][2] = 1
+    # matriz[1][4] = 1
+    # matriz[2][1] = 1
+    # matriz[2][3] = 1
+    # matriz[2][4] = 1
+    # matriz[3][1] = 1
+    # matriz[3][2] = 1
     # matriz[3][4] = 1
     # matriz[4][0] = 1
     # matriz[4][2] = 1
-    # matriz[4][3] = 1 
+    # matriz[4][3] = 1
 
     # Matriz Exemplo 2
-    # matriz[0][1] = 1 
-    # matriz[0][3] = 1 
-    # matriz[1][2] = 1 
-    # matriz[2][6] = 1 
-    # matriz[3][4] = 1 
-    # matriz[3][5] = 1 
-    # matriz[4][0] = 1 
-    # matriz[4][1] = 1 
-    # matriz[4][2] = 1 
-    # matriz[4][6] = 1 
+    # matriz[0][1] = 1
+    # matriz[0][3] = 1
+    # matriz[1][2] = 1
+    # matriz[2][6] = 1
+    # matriz[3][4] = 1
+    # matriz[3][5] = 1
+    # matriz[4][0] = 1
+    # matriz[4][1] = 1
+    # matriz[4][2] = 1
+    # matriz[4][6] = 1
     # matriz[5][2] = 1
     # matriz[6][1] = 1
     # matriz[6][5] = 1
+
+    # Matriz Exemplo Slide
+    # matriz[0][4] = 1
+    # matriz[0][5] = 1
+    # matriz[1][6] = 1
+    # matriz[2][7] = 1
+    # matriz[4][8] = 1
+    # matriz[5][4] = 1
+    # matriz[5][8] = 1
+    # matriz[6][0] = 1
+    # matriz[7][3] = 1
+    # matriz[8][0] = 1
 
     subgrafos = []
     tamanhoSubgrafos = 0
@@ -76,24 +89,24 @@ def buscaFechosTransitivos(matriz, verticeIniciador):
         for element in subgrafos:
             for x in element:
                 tamanhoSubgrafos += 1
-                
         # Se e a quantidade de vértices nos subgrafos for diferente do tamanho
-        # da matriz, então ainda teremos que fazer mais transições, e o grafo não 
+        # da matriz, então ainda teremos que fazer mais transições, e o grafo não
         # é conexo.
         if(tamanhoSubgrafos != len(matriz)):
             tamanhoSubgrafos = 0
             conexo = False
             verticeIniciador = verificaSubrafos(matriz, subgrafos)
         else:
-            os.system('cls')
             if(conexo == True):
                 print("O seu grafo é conexo!")
                 subgrafos = subgrafos[0]
             else:
+                subgrafos = [s for s in subgrafos if len(s) != 1]
                 print("O seu grafo não é conexo!")
-            print(f'Ordem de visitação:\n{subgrafos}')
+            print(subgrafos)
             os.system('pause')
             break
+
 
 def fechoTransitivoDireto(matriz, vertice):
     vetor = np.zeros(len(matriz))
@@ -153,6 +166,7 @@ def fechoTransitivoDireto(matriz, vertice):
 
     return direto
 
+
 def fechoTransitivoIndireto(matriz, vertice):
     vetor = np.zeros(len(matriz))
     vetor[vertice] = -1
@@ -211,19 +225,20 @@ def fechoTransitivoIndireto(matriz, vertice):
 
     return indireto
 
+
 def verificaGrafoConexo(matriz):
     print("Bem vindo ao verificador de Grafo Conexo!\n")
 
     try:
         verticeInicio = int(input("""Digite um vértice para iniciar
-Escolha: """)) # -1 Para trabalhar com ínico 0 no código, e 1 pelo usuário.
-        
+Escolha: """))  # -1 Para trabalhar com ínico 0 no código, e 1 pelo usuário.
+
         # Verifica se a matriz possui o vértice escolhido.
         if(verticeInicio > len(matriz) or verticeInicio <= 0):
             erro.mensagem()
             verificaGrafoConexo(matriz)
         else:
-            buscaFechosTransitivos(matriz, verticeInicio -1)
+            buscaFechosTransitivos(matriz, verticeInicio - 1)
 
     except ValueError:
         os.system('pause')
