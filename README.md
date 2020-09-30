@@ -1,5 +1,5 @@
 # Trabalho
-Atividade proposto para o trabalho 01 da M1 de grafos.
+Atividade proposto para o trabalho 01 e 02 da M1 de grafos.
 
 ### Objetivo
 Fazer um programa que permita a inclusão de um grafo (dirigido ou não dirigido), mostrando o Grafo (desenhado) ou a Matriz/lista de adjacências.
