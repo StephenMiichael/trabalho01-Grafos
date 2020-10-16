@@ -8,6 +8,7 @@ import numpy as np  # Para manipulação de matrizes
 import funcoes  # Arquivo de funcoes
 import conectividade  # Arquivo de funcoes envolvendo conectividade
 import erro  # Para mostrar mensagens de erro
+import dijkstra  # implementação do algoritmo de dijkstra
 
 
 def opcoesGrafo(matriz):
@@ -19,7 +20,8 @@ def opcoesGrafo(matriz):
          4 - Busca em largura
          5 - Busca em profundidade
          6 - Verificar grafo conexo
-         7 - Voltar ao menu principal ( ⚠️ ⚠️  IRÁ EXCLUIR SEU GRAFO ⚠️ ⚠️  )
+         7 - Dijkstra
+         8 - Voltar ao menu principal ( ⚠️ ⚠️  IRÁ EXCLUIR SEU GRAFO ⚠️ ⚠️  )
 Escolha: """))
 
         if escolha == 1:
@@ -32,6 +34,7 @@ Escolha: """))
             print('Para voltar as opções, pressione ESC')
             keyboard.wait('esc')
             os.system('cls')
+            main()
         elif escolha == 4:
             os.system('cls')
             funcoes.buscaLargura(matriz)
@@ -42,6 +45,9 @@ Escolha: """))
             os.system('cls')
             conectividade.verificaGrafoConexo(matriz)
         elif escolha == 7:
+            os.system('cls')
+            dijkstra.menor_caminho(matriz)
+        elif escolha == 8:
             os.system('cls')
             main()
         else:

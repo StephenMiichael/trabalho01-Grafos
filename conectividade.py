@@ -50,27 +50,31 @@ def buscaFechosTransitivos(matriz, verticeIniciador):
     # matriz[6][5] = 1
 
     # Matriz Exemplo Slide
-    # matriz[0][4] = 1
-    # matriz[0][5] = 1
-    # matriz[1][6] = 1
-    # matriz[2][7] = 1
-    # matriz[4][8] = 1
-    # matriz[5][4] = 1
-    # matriz[5][8] = 1
-    # matriz[6][0] = 1
-    # matriz[7][3] = 1
-    # matriz[8][0] = 1
+    matriz[0][4] = 1
+    matriz[0][5] = 1
+    matriz[1][6] = 1
+    matriz[2][7] = 1
+    matriz[4][8] = 1
+    matriz[5][4] = 1
+    matriz[5][8] = 1
+    matriz[6][0] = 1
+    matriz[7][3] = 1
+    matriz[8][0] = 1
 
     subgrafos = []
     tamanhoSubgrafos = 0
     conexo = True
 
     while(True):
+        print(f'Vertice Iniciador {verticeIniciador}')
         aux = []
         auxDireto = []
         auxIndireto = []
         direto = fechoTransitivoDireto(matriz, verticeIniciador)
         indireto = fechoTransitivoIndireto(matriz, verticeIniciador)
+
+        print(f'Direto: {direto}')
+        print(f'Indireto: {indireto}')
 
         for pos in range(len(direto)):
             if(direto[pos] != None):
@@ -85,10 +89,18 @@ def buscaFechosTransitivos(matriz, verticeIniciador):
 
         subgrafos.append(aux)
 
+        print(f'Auxiliar Direto: {auxDireto}')
+        print(f'Auxiliar Indireto: {auxIndireto}')
+        print(f'Intersecção: {aux}')
+        print(f'Subgrafos: {subgrafos}')
+
         # Verifica quantos vértices possui a soma de subrafos.
         for element in subgrafos:
             for x in element:
                 tamanhoSubgrafos += 1
+
+        print(f'Tamanho Subgrafo: {tamanhoSubgrafos}')
+        os.system('pause')
         # Se e a quantidade de vértices nos subgrafos for diferente do tamanho
         # da matriz, então ainda teremos que fazer mais transições, e o grafo não
         # é conexo.
@@ -121,23 +133,25 @@ def fechoTransitivoDireto(matriz, vertice):
     n = 1
     n_aux = 1
 
-    while parada == 0:  # condição de parada para 
+    while parada == 0:  # condição de parada para
         contador2 = 0
         parada2 = 0
         for j in range(quant_colunas):  # laço para percorrer toda a linha da matriz
-            if matriz[vertice][j] == 1 and vetor[j] == 0:  # verifica se o vertice possui alguma ligacao
-                vetor[j] = n  # adiciona o caminho no vetor de visitados e no vetor auxiliar 
-                
-                # o vetor auxiliar é utilizado para posteriormente encontrar quem serao os proximos vertices 
+            # verifica se o vertice possui alguma ligacao
+            if matriz[vertice][j] == 1 and vetor[j] == 0:
+                # adiciona o caminho no vetor de visitados e no vetor auxiliar
+                vetor[j] = n
+
+                # o vetor auxiliar é utilizado para posteriormente encontrar quem serao os proximos vertices
                 # de caminho menor para percorrer
                 vetor_aux[j] = n
             else:
                 contador2 += 1
 
-        if vetor_aux.mean() == -1:  # condição de parada criada para verificar quando o vetor auxiliar estiver cheio 
+        if vetor_aux.mean() == -1:  # condição de parada criada para verificar quando o vetor auxiliar estiver cheio
             parada = 1
-        
-        # esta parte do codigo é destinada a percorrer o vetor auxiliar e encontrar sempre o vertice de caminho menor 
+
+        # esta parte do codigo é destinada a percorrer o vetor auxiliar e encontrar sempre o vertice de caminho menor
         # para ser utilizado como novo vertice de origem no codigo acima
         parada3 = 0
         while parada2 == 0:
@@ -148,18 +162,19 @@ def fechoTransitivoDireto(matriz, vertice):
                 parada = 1
                 break
 
-            for j in range(quant_colunas):  # percorre o vetor auxiliar em busca de vertices de caminho menor
+            # percorre o vetor auxiliar em busca de vertices de caminho menor
+            for j in range(quant_colunas):
                 if vetor_aux[j] == n_aux:
-                    vertice = int(j)  # define a posicao do novo vertice 
+                    vertice = int(j)  # define a posicao do novo vertice
                     vetor_aux[j] = -1
                     n = n_aux + 1
                     parada2 = 1
                     break
                 else:
-                    contador += 1  # caso nao encontre algum vertice com o determinado valor de caminho 
+                    contador += 1  # caso nao encontre algum vertice com o determinado valor de caminho
 
             # esta condicao é verdadeira quando nao existe mais vertices de caminho especifico procurado
-            # e entao o caminho é incrementado 
+            # e entao o caminho é incrementado
             if len(matriz) == contador:
                 n_aux += 1
                 parada3 += 1  # criterio de parada criado para verificar quantas vezes o caminho foi incrementado
