@@ -105,7 +105,7 @@ def menor_caminho(matriz):
     origem = int(input('Informe o vertice de origem: '))
     origem -= 1
     visitados[origem] = 1
-    estimativas[origem] = 40
+    estimativas[origem] = 500
     precedentes[origem] = origem
 
     parada = 0
@@ -133,6 +133,10 @@ def menor_caminho(matriz):
         origem = iMenor
         visitados[iMenor] = 1
         valor = estimativas[iMenor]
+        
+    for k in range(len(matriz)):
+        if estimativas[k] == 500:
+            estimativas[k] = 0
 
     print(estimativas)
     keyboard.wait('esc')
