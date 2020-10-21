@@ -12,6 +12,19 @@ import main  # Para voltar ao script principal
 
 
 def matriz_de_custo(matriz):
+    # Matriz Exemplo Slide Dijkstra
+    matriz[0][1] = 2
+    matriz[0][3] = 1
+    matriz[1][3] = 3
+    matriz[1][4] = 10
+    matriz[2][0] = 4
+    matriz[2][5] = 5
+    matriz[3][2] = 2
+    matriz[3][4] = 2
+    matriz[3][5] = 8
+    matriz[3][6] = 4
+    matriz[4][6] = 6
+    matriz[6][5] = 1
 
     while True:
         os.system('cls')

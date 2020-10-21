@@ -34,7 +34,7 @@ Escolha: """))
             print('Para voltar as opções, pressione ESC')
             keyboard.wait('esc')
             os.system('cls')
-            main()
+            opcoesGrafo(matriz)
         elif escolha == 4:
             os.system('cls')
             funcoes.buscaLargura(matriz)
