@@ -151,7 +151,9 @@ def menor_caminho(matriz):
         if estimativas[k] == 500:
             estimativas[k] = 0
 
-    print('Resultados: \n')
+    print('Resultado: \n')
     print(estimativas)
     print('Pressione ESC para voltar ao menu principal.')
     keyboard.wait('esc')
+    os.system('cls')
+    main.opcoesGrafo(matriz)
