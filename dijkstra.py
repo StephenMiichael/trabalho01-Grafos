@@ -133,10 +133,12 @@ def menor_caminho(matriz):
         origem = iMenor
         visitados[iMenor] = 1
         valor = estimativas[iMenor]
-        
+
     for k in range(len(matriz)):
         if estimativas[k] == 500:
             estimativas[k] = 0
 
+    print('Resultados: \n')
     print(estimativas)
+    print('Pressione ESC para voltar ao menu principal.')
     keyboard.wait('esc')
